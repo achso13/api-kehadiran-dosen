@@ -25,7 +25,9 @@ class Dosen extends Authenticatable
         'jabatan',
         'image_url',
         'username',
-        'password'
+        'password',
+        'waktu_hadir',
+        'status'
     ];
 
     /**

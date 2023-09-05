@@ -38,6 +38,7 @@ class AuthController extends Controller
             'jabatan' => $request->input('jabatan'),
             'username' => $request->input('username'),
             'password' => Hash::make($request->input('password')),
+            'status' => false,
         ];
 
         if ($request->hasFile('image_url')) {

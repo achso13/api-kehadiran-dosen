@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\FormatHelpers;
 use App\Http\Resources\AbsensiResource;
+use App\Http\Resources\DosenResource;
 use App\Models\Absensi;
 use App\Models\Dosen;
 use Illuminate\Http\Request;
@@ -56,16 +57,18 @@ class AbsensiController extends Controller
         }
 
         $data = [
-            'id_dosen' => $request->input('id_dosen'),
             'status' => $request->input('status'),
             'waktu_hadir' => $request->input('waktu_hadir'),
         ];
 
-        $absensi = Absensi::create($data);
+        // $absensi = Absensi::create($data);
+        $dosen = Dosen::where('id', $request->input('id_dosen'))->update($data);
+
+        $dosenUpdated = new DosenResource(Dosen::find($request->input('id_dosen')));
 
         return response()->json([
             'message' => "success",
-            'data' => $absensi,
+            'data' => $dosenUpdated,
         ], 201);
     }
 
